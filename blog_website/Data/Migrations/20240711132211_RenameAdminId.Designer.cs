@@ -2,17 +2,20 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using blog_website.Data;
 
 #nullable disable
 
-namespace blog_website.Migrations
+namespace blog_website.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbCon))]
-    partial class ApplicationDbConModelSnapshot : ModelSnapshot
+    [Migration("20240711132211_RenameAdminId")]
+    partial class RenameAdminId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
