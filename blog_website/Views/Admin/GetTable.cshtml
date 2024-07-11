@@ -1,0 +1,22 @@
+﻿@using blog_website.Models.classes
+@model IEnumerable<Admin>
+
+
+<h1>Users</h1>
+<table class="table table-bordered table-stripped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Password</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="40%">@obj.name</td>
+                <td width="40%">@obj.password</td>
+            </tr>
+        }
+    </tbody>
+</table>
