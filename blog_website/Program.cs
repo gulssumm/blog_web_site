@@ -13,7 +13,7 @@ public class Program
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddDbContext<ApplicationDbCon>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr")));
-//builder.Services.AddDbContext<ApplicationDbCon>(opt => opt.UseInMemoryDatabase("AdminList"));
+        //builder.Services.AddDbContext<ApplicationDbCon>(opt => opt.UseInMemoryDatabase("AdminList"));
         WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.

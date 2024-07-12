@@ -1,7 +1,4 @@
-﻿@{
-    Layout = null;
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,10 +8,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="contact-form">
-            <h2>Register or Login</h2>
-            <a class="nav-link text-dark" asp-area="" asp-controller="DataContextAdmin" asp-action="Create">Register</a>
-            <a class="nav-link text-dark" asp-area="" asp-controller="DataContextAdmin" asp-action="Create">Login</a>
+        <h1>Register or Login</h1>
+        <div>
+            <a asp-controller="DataContextAdmin" asp-action="Create">Register</a>
         </div>
     </div>
 </body>
