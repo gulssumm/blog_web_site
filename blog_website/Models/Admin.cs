@@ -7,16 +7,6 @@ using System.Linq;
 
 namespace blog_website.Models.classes
 {
-    class MyContext : DbContext
-    {
-        public DbSet<Admin> Admins { get; set; }
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.Entity<Admin>()
-                .HasIndex(u => u.Name)
-                .IsUnique(true);
-        }
-    }
     public class Admin
     {
         public int Id { get; set; }

@@ -9,6 +9,11 @@ public class ApplicationDbCon : DbContext
     {
         Database.Migrate();
     }
-
-    public DbSet<Admin> Admins { get; set; } = null!;
+    public DbSet<Admin> Admins { get; set; }
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<Admin>()
+            .HasIndex(u => u.Name)
+            .IsUnique();
+    }
 }
