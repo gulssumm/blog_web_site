@@ -9,9 +9,17 @@
 <body>
     <div class="container">
         <h1>Register or Login</h1>
-        <div>
-            <a asp-controller="DataContextAdmin" asp-action="Create">Register</a>
-        </div>
+        <form asp-controller="DataContextAdmin" asp-action="Create" method="post">
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (event) {
+            console.log('Form submitted');
+        });
+    </script>
+
 </body>
 </html>

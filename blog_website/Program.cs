@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using blog_website.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,14 +10,14 @@ public class Program
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+        // Add services to the container.
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddDbContext<ApplicationDbCon>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr")));
         //builder.Services.AddDbContext<ApplicationDbCon>(opt => opt.UseInMemoryDatabase("AdminList"));
         WebApplication app = builder.Build();
 
-// Configure the HTTP request pipeline.
+        // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Home/Error");

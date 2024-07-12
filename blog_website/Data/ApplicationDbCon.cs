@@ -1,5 +1,6 @@
 ﻿using blog_website.Models.classes;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace blog_website.Data;
 
