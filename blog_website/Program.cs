@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using blog_website.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace blog_website;
 
@@ -15,6 +16,15 @@ public class Program
 
         builder.Services.AddDbContext<ApplicationDbCon>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr")));
         //builder.Services.AddDbContext<ApplicationDbCon>(opt => opt.UseInMemoryDatabase("AdminList"));
+
+        // Add authentication services
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/DataContextAdmin/Login";
+                options.AccessDeniedPath = "/DataContextAdmin/Login";
+            });
+
         WebApplication app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -30,6 +40,7 @@ public class Program
 
         app.UseRouting();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllerRoute(

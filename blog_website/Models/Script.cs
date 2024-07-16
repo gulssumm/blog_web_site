@@ -7,12 +7,10 @@ using System.Linq;
 
 namespace blog_website.Models.classes
 {
-    public class Admin
+    public class Script
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Username is required.")]
-        public string Name { get; set; }
-        [Required(ErrorMessage = "Password is required.")]
-        public string Password { get; set; }
+        public string Title { get; set; }
+        public string Substance { get; set; }
     }
 }

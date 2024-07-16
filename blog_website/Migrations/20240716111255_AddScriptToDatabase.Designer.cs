@@ -8,11 +8,11 @@ using blog_website.Data;
 
 #nullable disable
 
-namespace blog_website.Data.Migrations
+namespace blog_website.Migrations
 {
     [DbContext(typeof(ApplicationDbCon))]
-    [Migration("20240712095810_UniqueNameControl")]
-    partial class UniqueNameControl
+    [Migration("20240716111255_AddScriptToDatabase")]
+    partial class AddScriptToDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,27 @@ namespace blog_website.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Admins");
+                });
+
+            modelBuilder.Entity("blog_website.Models.classes.Script", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Substance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Scripts");
                 });
 #pragma warning restore 612, 618
         }

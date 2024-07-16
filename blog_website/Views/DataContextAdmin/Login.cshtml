@@ -1,14 +1,14 @@
 ﻿@model blog_website.Models.classes.Admin
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Login";
 }
 
-<h1>Register Page</h1>
-
+<h1>Login Page</h1>
+<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post">
+        <form asp-action="Login" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -21,13 +21,8 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-primary" />
+                <input type="submit" value="Login" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

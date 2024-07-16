@@ -18,5 +18,28 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #EDDDF1
+}
+
+.icon-container {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.icon-container i {
+        font-size: 5rem; /* Adjust size as needed */
+    }
+
+.txtarea {
+    width: 600px;
+}
+
+.navitem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    background-color: #EDDDF1;
+    border-radius: 10px;
 }
