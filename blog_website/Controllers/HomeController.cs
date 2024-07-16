@@ -16,7 +16,8 @@ namespace blog_website.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Script> objScriptList = _db.Scripts.ToList();
+            return View(objScriptList);
         }
 
         public IActionResult Privacy()
@@ -29,12 +30,12 @@ namespace blog_website.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Script objScript)
         {
@@ -42,10 +43,15 @@ namespace blog_website.Controllers
             _db.SaveChanges();
             return View();
         }
-        public IActionResult GetScript()
+        public IActionResult Details(int id)
         {
-            IEnumerable<Script> objScriptList = _db.Scripts.ToList();
-            return View(objScriptList);
+            var script = _db.Scripts.FirstOrDefault(s => s.Id == id);
+            if (script == null)
+            {
+                return NotFound();
+            }
+            return View(script);
         }
+
     }
 }

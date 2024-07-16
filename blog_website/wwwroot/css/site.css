@@ -43,3 +43,89 @@ body {
     background-color: #EDDDF1;
     border-radius: 10px;
 }
+
+/* site.css */
+
+/* Style for the scripts container */
+.scripts-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Style for each script item */
+.script-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 300px;
+}
+
+/* Style for the script title */
+.script-title {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+/* Style for the script content */
+.script-substance {
+    font-size: 1em;
+    color: #666;
+    max-height: 300px; /* Adjust this value as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.read-more {
+    font-size: 0.9em;
+    color: #258cfb;
+    cursor: pointer;
+    text-align: right;
+    margin-top: auto;
+    align-self: flex-end;
+    margin-right: 10px;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    column-gap: 100px;
+}
+
+.saveButton {
+    background-color: #cfa0db;
+    border: 1px solid #cfa0db;
+    border-radius: 10px;
+    margin-top: 10px;
+    box-shadow: 5px 5px 5px white;
+}
+    .saveButton:hover {
+        background-color: #a159b3;
+        border: 1px solid #a159b3;
+    }
+
+.buttonsContainer {
+    display: flex;
+    column-gap: 10px;
+}

@@ -11,23 +11,25 @@
         <h1>Register or Login</h1>
         @if (!User.Identity.IsAuthenticated)
         {
-        <form asp-controller="DataContextAdmin" asp-action="Create" method="post">
-            <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-primary" />
+            <div class="buttonsContainer">
+                <form asp-controller="DataContextAdmin" asp-action="Create" method="post">
+                    <div class="form-group">
+                        <input type="submit" value="Register" class="btn btn-primary saveButton" />
+                    </div>
+                </form>
+                <form asp-controller="DataContextAdmin" asp-action="Login" method="post">
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn btn-primary saveButton" />
+                    </div>
+                </form>
             </div>
-        </form>
-        <form asp-controller="DataContextAdmin" asp-action="Login" method="post">
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-        </form>
         }
-        
+
         else
         {
             <form asp-controller="DataContextAdmin" asp-action="Logout" method="post">
                 <div class="form-group">
-                    <input type="submit" value="Logout" class="btn btn-primary" />
+                    <input type="submit" value="Logout" class="btn btn-primary saveButton" />
                 </div>
             </form>
         }

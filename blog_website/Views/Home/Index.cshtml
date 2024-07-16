@@ -1,18 +1,21 @@
-﻿@{
+﻿@model IEnumerable<blog_website.Models.classes.Script>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <!--
-    <div>
-    <a asp-controller="DataContextAdmin" asp-action="GetTable">Back to List</a>
+<h1 class="display-4 welcome">Welcome</h1>
+@if (Model.ToList().Count > 0)
+{
+    <div class="border">
+        <div class="scroll-container">
+            @foreach (var script in Model)
+            {
+                <div class="script-item">
+                    <h2 class="script-title">@script.Title</h2>
+                    <p class="script-substance">@script.Substance</p>
+                    <a class="read-more" href="@Url.Action("Details", "Home", new { id = script.Id })">Read More</a>
+                </div>
+            }
+        </div>
     </div>
-    <div class="icon-container">
-        <a asp-controller="Home" asp-action="Create">
-            <i class="bi bi-plus-lg"></i>
-        </a>
-    </div>
-    -->
-
-</div>
+}
