@@ -3,6 +3,7 @@ using blog_website.Models;
 using blog_website.Models.classes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace blog_website.Controllers
@@ -16,7 +17,7 @@ namespace blog_website.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Script> objScriptList = _db.Scripts.ToList();
+            IEnumerable<Blog> objScriptList = _db.Scripts.Include(s => s.User).ToList();
             return View(objScriptList);
         }
 
@@ -37,15 +38,24 @@ namespace blog_website.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Script objScript)
+        public IActionResult Create(Blog objScript)
         {
+            // Set the AdminId based on the currently logged-in admin
+            // Assuming you have a method to get the current admin id
+            objScript.UserId = GetCurrentAdminId();
             _db.Scripts.Add(objScript);
             _db.SaveChanges();
             return View();
         }
+        private int GetCurrentAdminId()
+        {
+            // Logic to get the current logged-in admin's ID
+            string? name = User.Identity.Name;
+            return _db.Admins.First(dto => dto.Name == name).Id;
+        }
         public IActionResult Details(int id)
         {
-            var script = _db.Scripts.FirstOrDefault(s => s.Id == id);
+            var script = _db.Scripts.Include(s => s.User).FirstOrDefault(s => s.Id == id);
             if (script == null)
             {
                 return NotFound();

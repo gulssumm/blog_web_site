@@ -11,13 +11,17 @@ public class ApplicationDbCon : DbContext
     {
         //Database.Migrate();
     }
-    public DbSet<Admin> Admins { get; set; }
-    public DbSet<Script> Scripts { get; set; }
+    public DbSet<User> Admins { get; set; }
+    public DbSet<Blog> Scripts { get; set; }
     public DbSet<Deneme> Denemes { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<Admin>()
+        builder.Entity<User>()
             .HasIndex(u => u.Name)
             .IsUnique();
+        builder.Entity<Blog>()
+            .HasOne(s => s.User)
+            .WithMany(a => a.Blogs)
+            .HasForeignKey(s => s.UserId);
     }
 }

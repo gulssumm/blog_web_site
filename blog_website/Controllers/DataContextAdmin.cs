@@ -26,19 +26,19 @@ namespace blog_website.Controllers
         [Authorize]
         public IActionResult GetTable()
         {
-            IEnumerable<Admin> objAdminList = _db.Admins.ToList();
+            IEnumerable<User> objAdminList = _db.Admins.ToList();
             return View(objAdminList);
         }
         public IActionResult Create()
         {
             Console.WriteLine("GET Create");
             ModelState.Clear(); // Clear the ModelState
-            return View(new Admin()); // Pass a new Admin object to the view
+            return View(new User()); // Pass a new Admin object to the view
         }
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Admin objAdmin)
+        public IActionResult Create(User objAdmin)
         {
             Console.WriteLine("POST Create"); // Log to check if the POST method is hit
             Console.WriteLine($"Name: {objAdmin.Name}, Password: {objAdmin.Password}"); // Log form values
@@ -67,7 +67,7 @@ namespace blog_website.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(Admin objAdmin)
+        public async Task<IActionResult> Login(User objAdmin)
         {
             var admin = _db.Admins.SingleOrDefault(a => a.Name == objAdmin.Name && a.Password == objAdmin.Password);
             if (admin != null)

@@ -74,6 +74,16 @@ body {
     color: #333;
 }
 
+.script-date {
+    font-size: 15px;
+    color: lightblue;
+}
+
+.script-name {
+    font-size: 20px;
+    color: lightblue;
+}
+
 /* Style for the script content */
 .script-substance {
     font-size: 1em;

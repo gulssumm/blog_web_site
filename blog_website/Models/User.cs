@@ -7,12 +7,11 @@ using System.Linq;
 
 namespace blog_website.Models.classes
 {
-    public class Admin
+    public class User
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Username is required.")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
+        public ICollection<Blog> Blogs { get; } // Navigation property
     }
 }

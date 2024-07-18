@@ -1,4 +1,4 @@
-﻿@model blog_website.Models.classes.Script
+﻿@model blog_website.Models.classes.Blog
 @{
     ViewData["Title"] = "Create";
 }
@@ -18,6 +18,11 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary saveButton" />
+            </div>
+        </form>
+        <form asp-controller="Home">
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary saveButton" />
             </div>
         </form>
     </div>
