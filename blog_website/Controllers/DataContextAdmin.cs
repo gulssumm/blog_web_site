@@ -26,7 +26,7 @@ namespace blog_website.Controllers
         [Authorize]
         public IActionResult GetTable()
         {
-            IEnumerable<User> objAdminList = _db.Admins.ToList();
+            IEnumerable<User> objAdminList = _db.Users.ToList();
             return View(objAdminList);
         }
         public IActionResult Create()
@@ -46,7 +46,7 @@ namespace blog_website.Controllers
             {
                 try
                 {
-                    _db.Admins.Add(objAdmin);
+                    _db.Users.Add(objAdmin);
                     _db.SaveChanges();
                     return RedirectToAction("Index", "Home"); // Redirect to Home/Index
                 }
@@ -69,7 +69,7 @@ namespace blog_website.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(User objAdmin)
         {
-            var admin = _db.Admins.SingleOrDefault(a => a.Name == objAdmin.Name && a.Password == objAdmin.Password);
+            var admin = _db.Users.SingleOrDefault(a => a.Name == objAdmin.Name && a.Password == objAdmin.Password);
             if (admin != null)
             {
                 var claims = new List<Claim>

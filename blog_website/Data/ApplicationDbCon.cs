@@ -11,8 +11,8 @@ public class ApplicationDbCon : DbContext
     {
         //Database.Migrate();
     }
-    public DbSet<User> Admins { get; set; }
-    public DbSet<Blog> Scripts { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Blog> Blogs { get; set; }
     public DbSet<Deneme> Denemes { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {

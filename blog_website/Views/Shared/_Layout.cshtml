@@ -13,7 +13,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">blog_website</a>
+                <a class="titleNavbar" asp-area="" asp-controller="Home" asp-action="Index">BLOG</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,8 +27,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="DataContextAdmin" asp-action="Index">Profile</a>
                         </li>
                         <li class="nav-item navitem">
-                            <i class="bi bi-plus-lg"></i>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Create">Script</a>
+                            <a class="createBlogBtn" asp-area="" asp-controller="Home" asp-action="Create">
+                                <i class="bi bi-plus-lg editBtnIcon"></i>
+                                <p class="editBtnText">Blog</p>
+                            </a>
                         </li>
                     </ul>
                 </div>

@@ -17,7 +17,7 @@ namespace blog_website.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Blog> objScriptList = _db.Scripts.Include(s => s.User).ToList();
+            IEnumerable<Blog> objScriptList = _db.Blogs.Include(s => s.User).ToList();
             return View(objScriptList);
         }
 
@@ -43,7 +43,7 @@ namespace blog_website.Controllers
             // Set the AdminId based on the currently logged-in admin
             // Assuming you have a method to get the current admin id
             objScript.UserId = GetCurrentAdminId();
-            _db.Scripts.Add(objScript);
+            _db.Blogs.Add(objScript);
             _db.SaveChanges();
             return View();
         }
@@ -51,17 +51,77 @@ namespace blog_website.Controllers
         {
             // Logic to get the current logged-in admin's ID
             string? name = User.Identity.Name;
-            return _db.Admins.First(dto => dto.Name == name).Id;
+            var user = _db.Users.First(dto => dto.Name == name);
+            if (user == null)
+            {
+                // Handle the case where the user is not found
+                throw new Exception("User not found");
+            }
+            return user.Id;
         }
         public IActionResult Details(int id)
         {
-            var script = _db.Scripts.Include(s => s.User).FirstOrDefault(s => s.Id == id);
+            var script = _db.Blogs.Include(s => s.User).FirstOrDefault(s => s.Id == id);
             if (script == null)
             {
                 return NotFound();
             }
             return View(script);
         }
-
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var BlogFromDb = _db.Blogs.Find(id);
+            if (BlogFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(BlogFromDb);
+        }
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Blog obj)
+        {
+            if (ModelState.IsValid)
+            {
+                //// Check if UserId exists
+                //var userExists = _db.Users.Any(u => u.Id == obj.UserId);
+                //if (!userExists)
+                //{
+                //    ModelState.AddModelError("", "User does not exist.");
+                //    return View(obj);
+                //}
+                _db.Blogs.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var BlogFromDb = _db.Blogs.Find(id);
+            if (BlogFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(BlogFromDb);
+        }
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(Blog obj)
+        {
+            _db.Blogs.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
