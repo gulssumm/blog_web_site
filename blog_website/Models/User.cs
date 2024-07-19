@@ -12,6 +12,5 @@ namespace blog_website.Models.classes
         public int Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public ICollection<Blog> Blogs { get; } // Navigation property
     }
 }

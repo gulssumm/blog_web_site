@@ -1,7 +1,9 @@
-using Microsoft.AspNetCore.Identity;
-using blog_website.Data;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using blog_website.Data;
+using blog_website.Models;
+using blog_website.Models.classes;
 
 namespace blog_website;
 
@@ -9,29 +11,38 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+        var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
 
-        builder.Services.AddDbContext<ApplicationDbCon>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr")));
-        //builder.Services.AddDbContext<ApplicationDbCon>(opt => opt.UseInMemoryDatabase("AdminList"));
+        // Configure the database context
+        builder.Services.AddDbContext<ApplicationDbCon>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr")));
 
         // Add authentication services
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
                 options.LoginPath = "/DataContextAdmin/Login";
-                options.AccessDeniedPath = "/DataContextAdmin/Login";
+                options.LogoutPath = "/DataContextAdmin/Login";
             });
 
-        WebApplication app = builder.Build();
+        // Add authorization services
+        builder.Services.AddAuthorization();
+
+        var app = builder.Build();
+
+        // Seed the database with initial data
+        using (var scope = app.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<ApplicationDbCon>();
+        }
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Home/Error");
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
 
@@ -44,8 +55,8 @@ public class Program
         app.UseAuthorization();
 
         app.MapControllerRoute(
-            "default",
-            "{controller=Home}/{action=Index}/{id?}");
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.Run();
     }

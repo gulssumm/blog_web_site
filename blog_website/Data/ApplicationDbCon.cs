@@ -19,9 +19,5 @@ public class ApplicationDbCon : DbContext
         builder.Entity<User>()
             .HasIndex(u => u.Name)
             .IsUnique();
-        builder.Entity<Blog>()
-            .HasOne(s => s.User)
-            .WithMany(a => a.Blogs)
-            .HasForeignKey(s => s.UserId);
     }
 }

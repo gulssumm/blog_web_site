@@ -8,6 +8,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-controller="Home" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />

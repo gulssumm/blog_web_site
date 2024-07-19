@@ -13,8 +13,9 @@ namespace blog_website.Models.classes
         public string Title { get; set; }
         public string Substance { get; set; }
         public DateTime CreateDateTime { get; set; } = DateTime.Now;
-
         public int UserId { get; set; } // Foreign key of type int
+
+
         public User? User { get; set; } // Navigation property
     }
 }

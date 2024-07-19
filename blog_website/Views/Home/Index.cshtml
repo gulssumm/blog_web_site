@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<blog_website.Models.classes.Blog>
+@using Microsoft.AspNetCore.Identity
 
 @{
     ViewData["Title"] = "Home Page";
+    int currentUserId = ViewBag.CurrentUserId;
 }
 
 <h1 class="display-4 welcome">Welcome</h1>
@@ -16,15 +18,19 @@
                     <h3 class="script-name">@script.User.Name</h3>
                     <h3 class="script-date">@script.CreateDateTime</h3>
                     <p class="script-substance">@script.Substance</p>
+                    <p class="script-substance"></p>
                     <div class="btns-script">
-                        <a class="editBtn" asp-area="" asp-controller="Home" asp-action="Edit" asp-route-id="@script.Id">
-                            <i class="bi bi-pencil editBtnIcon"></i>
-                            <p class="editBtnText">Edit</p>
-                        </a>
-                        <a class="editBtn" asp-area="" asp-controller="Home" asp-action="Delete" asp-route-id="@script.Id">
-                            <i class="bi bi-pencil editBtnIcon"></i>
-                            <p class="editBtnText">Delete</p>
-                        </a>
+                        @if (currentUserId == script.UserId)
+                        {
+                            <a class="editBtn" asp-area="" asp-controller="Home" asp-action="Edit" asp-route-id="@script.Id">
+                                <i class="bi bi-pencil editBtnIcon"></i>
+                                <p class="editBtnText">Edit</p>
+                            </a>
+                            <a class="editBtn" asp-area="" asp-controller="Home" asp-action="Delete" asp-route-id="@script.Id">
+                                <i class="bi bi-trash editBtnIcon"></i>
+                                <p class="editBtnText">Delete</p>
+                            </a>
+                        }
                         <a class="read-more" href="@Url.Action("Details", "Home", new { id = script.Id })" target="_blank">Read More</a>
                     </div>
                 </div>

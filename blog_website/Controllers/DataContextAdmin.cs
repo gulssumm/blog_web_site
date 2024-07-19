@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using blog_website.Models.classes;
 using blog_website.Data;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
@@ -31,22 +28,30 @@ namespace blog_website.Controllers
         }
         public IActionResult Create()
         {
-            Console.WriteLine("GET Create");
-            ModelState.Clear(); // Clear the ModelState
-            return View(new User()); // Pass a new Admin object to the view
+            return View();
         }
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(User objAdmin)
+        public IActionResult Create(User objUser)
         {
             Console.WriteLine("POST Create"); // Log to check if the POST method is hit
-            Console.WriteLine($"Name: {objAdmin.Name}, Password: {objAdmin.Password}"); // Log form values
+            Console.WriteLine($"Name: {objUser.Name}, Password: {objUser.Password}"); // Log form values
+            if (!ModelState.IsValid)
+            {
+                foreach (var state in ModelState)
+                {
+                    foreach (var error in state.Value.Errors)
+                    {
+                        ModelState.AddModelError("", $"User with ID {error.ErrorMessage}\n does not add.");
+                    }
+                }
+            }
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _db.Users.Add(objAdmin);
+                    _db.Users.Add(objUser);
                     _db.SaveChanges();
                     return RedirectToAction("Index", "Home"); // Redirect to Home/Index
                 }
@@ -56,7 +61,7 @@ namespace blog_website.Controllers
                     ModelState.AddModelError("Name", "Name already exists.");
                 }
             }
-            return View(objAdmin);
+            return View(objUser);
         }
         [AllowAnonymous]
         public IActionResult Login()
@@ -67,14 +72,14 @@ namespace blog_website.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(User objAdmin)
+        public async Task<IActionResult> Login(User objUser)
         {
-            var admin = _db.Users.SingleOrDefault(a => a.Name == objAdmin.Name && a.Password == objAdmin.Password);
-            if (admin != null)
+            var user = _db.Users.SingleOrDefault(a => a.Name == objUser.Name && a.Password == objUser.Password);
+            if (user != null)
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, admin.Name)
+                    new Claim(ClaimTypes.Name, user.Name)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -84,7 +89,7 @@ namespace blog_website.Controllers
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return View(objAdmin);
+            return View(objUser);
         }
 
         public async Task<IActionResult> Logout()
