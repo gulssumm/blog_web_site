@@ -15,7 +15,7 @@ Choose the project.
 ## Contact
 - 👨‍💻 All of my projects are available at [https://github.com/gulssumm](https://github.com/gulssumm)
 
-- 💬 Ask me about **ASP.NET, Python**
+- 💬 Ask me about **ASP.NET CORE MVC, Python**
 
 - 📫 How to reach me **www.linkedin.com/in/gülsüm-çetinözlü-16537021a**
 
