@@ -1,4 +1,5 @@
 ﻿@model blog_website.Models.classes.Blog
+@using Markdig;
 
 @{
     ViewData["Title"] = Model.Title;
@@ -6,5 +7,8 @@
 
 <div class="script-details">
     <h1>@Model.Title</h1>
-    <p>@Model.Substance</p>
+    <!-- Render the sample Markdown content -->
+    <div class="script-substance">
+        @Html.Raw(Markdown.ToHtml(Model.Substance))
+    </div>
 </div>

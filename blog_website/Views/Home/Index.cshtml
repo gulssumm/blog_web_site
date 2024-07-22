@@ -1,9 +1,14 @@
 ﻿@model IEnumerable<blog_website.Models.classes.Blog>
 @using Microsoft.AspNetCore.Identity
+@using Markdig;
 
 @{
     ViewData["Title"] = "Home Page";
     int currentUserId = ViewBag.CurrentUserId;
+
+    // Sample Markdown content (You can replace this with your actual content)
+    string markdownContent = "# Welcome to the Blog\nThis is **Markdown** content!";
+    string htmlContent = Markdown.ToHtml(markdownContent);
 }
 
 <h1 class="display-4 welcome">Welcome</h1>
@@ -15,10 +20,18 @@
             {
                 <div class="script-item">
                     <h2 class="script-title">@script.Title</h2>
-                    <h3 class="script-name">@script.User.Name</h3>
-                    <h3 class="script-date">@script.CreateDateTime</h3>
-                    <p class="script-substance">@script.Substance</p>
-                    <p class="script-substance"></p>
+                    <div class="script-sub-item">
+                        <h3 class="script-name">@script.User.Name</h3>
+                        <h3 class="script-date">@script.CreateDateTime</h3>
+                    </div>
+                    <!-- Render the sample Markdown content -->
+                    <div class="script-substance">
+                        @Html.Raw(Markdown.ToHtml(script.Substance))
+                        <div class="script-overlay"></div>
+                    </div>
+
+                    <!-- Render the Markdown content here -->
+
                     <div class="btns-script">
                         @if (currentUserId == script.UserId)
                         {
@@ -38,3 +51,5 @@
         </div>
     </div>
 }
+
+

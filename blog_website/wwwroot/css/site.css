@@ -63,37 +63,60 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    height: 300px;
-    width: 300px;
+    height: 350px;
+    width: 350px;
     position: relative;
+    background: linear-gradient(0deg, white, #b893c2)
+}
+.script-sub-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* Style for the script title */
 .script-title {
     margin-bottom: 10px;
-    font-size: 1.5em;
+    font-size: 2em;
     color: #333;
 }
 
 .script-date {
     font-size: 15px;
-    color: lightblue;
+    color: #ccf9ff;
 }
+
 
 .script-name {
     font-size: 20px;
-    color: lightblue;
+    color: #ccf9ff;
 }
 
 /* Style for the script content */
 .script-substance {
     font-size: 1em;
     color: #666;
-    max-height: 300px; /* Adjust this value as needed */
+    max-height: 50%; /* Adjust this value as needed */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    position: relative;
 }
+    .script-substance::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px; /* Height of the fade effect */
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    }
+    .script-substance img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
 
 .read-more {
     font-size: 0.9em;

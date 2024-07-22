@@ -1,9 +1,11 @@
+using Markdig.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using blog_website.Data;
 using blog_website.Models;
 using blog_website.Models.classes;
+using Westwind.AspNetCore.Markdown;
 
 namespace blog_website;
 
@@ -31,6 +33,9 @@ public class Program
         // Add authorization services
         builder.Services.AddAuthorization();
 
+        // Add Markdown services
+        builder.Services.AddMarkdown();
+
         var app = builder.Build();
 
         // Seed the database with initial data
@@ -48,6 +53,15 @@ public class Program
 
         app.UseHttpsRedirection();
         app.UseStaticFiles();
+
+        // If you use default files make sure you do it before markdown middleware
+        app.UseDefaultFiles(new DefaultFilesOptions()
+        {
+            DefaultFileNames = new List<string> { "index.md", "index.html" }
+        });
+
+        // Use Markdown middleware
+        app.UseMarkdown();
 
         app.UseRouting();
 
