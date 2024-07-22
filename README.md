@@ -17,7 +17,7 @@ Choose the project.
 
 - 💬 Ask me about **ASP.NET, Python**
 
-- 📫 How to reach me **gulsumcetinozlu@gmail.com**
+- 📫 How to reach me **www.linkedin.com/in/gülsüm-çetinözlü-16537021a**
 
 - 📄 Know about my experiences [https://www.linkedin.com/in/g%C3%BCls%C3%BCm-%C3%A7etin%C3%B6zl%C3%BC-16537021a/](https://www.linkedin.com/in/g%C3%BCls%C3%BCm-%C3%A7etin%C3%B6zl%C3%BC-16537021a/)
   
