@@ -1,11 +1,10 @@
-using Markdig.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using blog_website.Data;
-using blog_website.Models;
-using blog_website.Models.classes;
-using Westwind.AspNetCore.Markdown;
+using myLib;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 
 namespace blog_website;
 
@@ -17,6 +16,7 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddTransient<IMarkDown, MarkDown>();
 
         // Configure the database context
         builder.Services.AddDbContext<ApplicationDbCon>(options =>
@@ -30,11 +30,15 @@ public class Program
                 options.LogoutPath = "/DataContextAdmin/Login";
             });
 
+        builder.Services.AddDataProtection().UseCryptographicAlgorithms(
+            new AuthenticatedEncryptorConfiguration
+            {
+                EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+                ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+            });
+
         // Add authorization services
         builder.Services.AddAuthorization();
-
-        // Add Markdown services
-        // builder.Services.AddMarkdown();
 
         var app = builder.Build();
 
@@ -59,9 +63,6 @@ public class Program
         {
             DefaultFileNames = new List<string> { "index.md", "index.html" }
         });
-
-        // Use Markdown middleware
-        // app.UseMarkdown();
 
         app.UseRouting();
 

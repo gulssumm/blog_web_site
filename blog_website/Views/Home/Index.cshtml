@@ -2,9 +2,12 @@
 @using Microsoft.AspNetCore.Identity
 @using myLib;
 
+@inject IMarkDown markDown
+
 @{
     ViewData["Title"] = "Home Page";
     int currentUserId = ViewBag.CurrentUserId;
+
 }
 
 <h1 class="display-4 welcome">Welcome</h1>
@@ -22,7 +25,7 @@
                     </div>
                     <!-- Render the sample Markdown content -->
                     <div class="script-substance">
-                        @Html.Raw(MarkDown.ConvertToHtml(script.Substance))
+                        @Html.Raw(markDown.ConvertToHtml(script.Substance))
                         <div class="script-overlay"></div>
                     </div>
 

@@ -2,11 +2,16 @@
 
 namespace myLib
 {
-    public class MarkDown
+    public class MarkDown : IMarkDown
     {
-        public static string ConvertToHtml(string markdown)
+        public string ConvertToHtml(string markdown)
         {
             return Markdown.ToHtml(markdown);
         }
+    }
+
+    public interface IMarkDown
+    {
+        string ConvertToHtml(string markdown);
     }
 }

@@ -1,5 +1,6 @@
-﻿@model blog_website.Models.classes.Blog
-@using Markdig;
+﻿@using myLib
+@model blog_website.Models.classes.Blog
+@inject IMarkDown markDown;
 
 @{
     ViewData["Title"] = Model.Title;
@@ -9,6 +10,6 @@
     <h1>@Model.Title</h1>
     <!-- Render the sample Markdown content -->
     <div class="script-substance">
-        @Html.Raw(Markdown.ToHtml(Model.Substance))
+        @Html.Raw(markDown.ConvertToHtml(Model.Substance))
     </div>
 </div>
