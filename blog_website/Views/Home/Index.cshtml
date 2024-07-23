@@ -1,14 +1,10 @@
 ﻿@model IEnumerable<blog_website.Models.classes.Blog>
 @using Microsoft.AspNetCore.Identity
-@using Markdig;
+@using myLib;
 
 @{
     ViewData["Title"] = "Home Page";
     int currentUserId = ViewBag.CurrentUserId;
-
-    // Sample Markdown content (You can replace this with your actual content)
-    string markdownContent = "# Welcome to the Blog\nThis is **Markdown** content!";
-    string htmlContent = Markdown.ToHtml(markdownContent);
 }
 
 <h1 class="display-4 welcome">Welcome</h1>
@@ -26,7 +22,7 @@
                     </div>
                     <!-- Render the sample Markdown content -->
                     <div class="script-substance">
-                        @Html.Raw(Markdown.ToHtml(script.Substance))
+                        @Html.Raw(MarkDown.ConvertToHtml(script.Substance))
                         <div class="script-overlay"></div>
                     </div>
 
