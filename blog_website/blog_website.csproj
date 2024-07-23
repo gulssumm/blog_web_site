@@ -23,4 +23,8 @@
     <PackageReference Include="Westwind.AspNetCore.Markdown" Version="3.17.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\myLib\myLib.csproj" />
+  </ItemGroup>
+
 </Project>

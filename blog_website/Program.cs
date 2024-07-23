@@ -34,7 +34,7 @@ public class Program
         builder.Services.AddAuthorization();
 
         // Add Markdown services
-        builder.Services.AddMarkdown();
+        // builder.Services.AddMarkdown();
 
         var app = builder.Build();
 
@@ -61,7 +61,7 @@ public class Program
         });
 
         // Use Markdown middleware
-        app.UseMarkdown();
+        // app.UseMarkdown();
 
         app.UseRouting();
 
