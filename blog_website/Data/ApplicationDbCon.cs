@@ -9,7 +9,7 @@ public class ApplicationDbCon : DbContext
 {
     public ApplicationDbCon(DbContextOptions<ApplicationDbCon> options) : base(options)
     {
-        //Database.Migrate();
+        Database.Migrate();
     }
     public DbSet<User> Users { get; set; }
     public DbSet<Blog> Blogs { get; set; }

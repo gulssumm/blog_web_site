@@ -5,6 +5,7 @@ using myLib;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
+using System.Runtime.InteropServices;
 
 namespace blog_website;
 
@@ -18,9 +19,22 @@ public class Program
         builder.Services.AddControllersWithViews();
         builder.Services.AddTransient<IMarkDown, MarkDown>();
 
-        // Configure the database context
-        builder.Services.AddDbContext<ApplicationDbCon>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr")));
+        // Choose configuration accordingly OS
+        if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            // Configure the database context
+            builder.Services.AddDbContext<ApplicationDbCon>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr")));
+        }
+        else if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            // Configure the database context
+            builder.Services.AddDbContext<ApplicationDbCon>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ConStrLinux")));
+        }
+        else{
+            throw new Exception("there is no database config!!");
+        }
 
         // Add authentication services
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -46,6 +60,7 @@ public class Program
         using (var scope = app.Services.CreateScope())
         {
             var context = scope.ServiceProvider.GetRequiredService<ApplicationDbCon>();
+            context.Database.Migrate();
         }
 
         // Configure the HTTP request pipeline.
