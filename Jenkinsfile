@@ -8,7 +8,7 @@ buildPlugin(
 pipeline {
   agent {label "Linux"}
   stages {
-    stage('Hello) {
+    stage('Hello') {
       steps {
         echo "hello from Gulsum"
       }
