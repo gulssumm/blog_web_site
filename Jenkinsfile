@@ -11,10 +11,13 @@ pipeline {
           branch "jenkins-*"
         }
         steps {
-          bat '''
-            type README.md
-          '''
+          bat  "dotnet restore ${workspace} blog_website\blog_website.sln"
         }
+    }
+    stage ('Build') {
+      steps {
+        cmd run.cmd
+      }
     }
     stage ('for the PR') {
         when {
