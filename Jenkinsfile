@@ -1,9 +1,10 @@
 pipeline {
+  agent any
   stages {
-    stage('Hello') {
+    stage ('Initialize') {
       steps {
-        echo "hello from Gulsum"
+        echo 'GULSUM'
       }
     }
-  }     
+  }
 }
