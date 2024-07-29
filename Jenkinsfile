@@ -11,7 +11,7 @@ pipeline {
           branch "jenkins-*"
         }
         steps {
-          sh '''
+          bat '''
             cat README.md
           '''
         }
