@@ -6,14 +6,6 @@ pipeline {
         echo 'GULSUM'
       }
     }
-    stage ('for the jenkins branch') {
-        when {
-          branch "jenkins-*"
-        }
-        steps {
-          bat  "dotnet restore ${workspace} blog_website\blog_website.sln"
-        }
-    }
     stage ('Build') {
       steps {
         cmd run.cmd
