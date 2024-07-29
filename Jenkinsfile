@@ -8,7 +8,7 @@ pipeline {
     }
     stage ('Build') {
       steps {
-        cmd run.cmd
+        bat run.cmd
       }
     }
     stage ('for the PR') {
