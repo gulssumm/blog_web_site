@@ -8,7 +8,7 @@ pipeline {
     }
     stage ('Build') {
       steps {
-        bat "cmd run.cmd"
+        bat "run.cmd"
       }
     }
   }
