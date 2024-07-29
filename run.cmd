@@ -1,1 +1,1 @@
-echo "hello world"
+dotnet run --project "blog_website\blog_website.csproj"
