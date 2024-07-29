@@ -12,7 +12,7 @@ pipeline {
         }
         steps {
           bat '''
-            cat README.md
+            type README.md
           '''
         }
     }
