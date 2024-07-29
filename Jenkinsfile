@@ -8,16 +8,8 @@ pipeline {
     }
     stage ('Build') {
       steps {
-        bat run.cmd
+        bat "cmd run.cmd"
       }
     }
-    stage ('for the PR') {
-        when {
-          branch 'PR-*'
-        }
-        steps {
-          echo 'this only runs for the PRs'
-        }
-   }
   }
 }
