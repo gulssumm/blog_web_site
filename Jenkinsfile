@@ -11,6 +11,11 @@ pipeline {
         sh 'dotnet build'
       }
     }
+    stage ('List') {
+      steps {
+        sh 'ls -la'
+      }
+    }
     stage ('Migration') {
       steps {
         sh 'dotnet ef database update --project blog_website/blog_website.csproj'
