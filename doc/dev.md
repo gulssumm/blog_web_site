@@ -60,12 +60,22 @@ After all, you can just press the https button on Visual Studio or you can write
 > You can get help from this video: https://www.youtube.com/watch?v=LbXKUKQ24T8
 - When the scanning finished successfull you can go to localhost and open the project
 
-## UBUNTU
+## UBUNTU 22.04
 > I run on VirtualBox and write according to this
 ### If you want to run the project with your local mssql server database you must make install mssql on your machine
 ```
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install -y mssql-server
-
+    1  sudo apt-get update  
+    2  sudo apt-get upgrade  
+    3  sudo apt install curl  
+    4  sudo apt-get update  
+    5  curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg  
+    6  curl -fsSL https://packages.microsoft.com/config/ubuntu/22.04/mssql-server-2022.list | sudo tee /etc/apt/sources.list.d/mssql-server-2022.list  
+    7  sudo apt-get update  
+    8  sudo apt-get install -y mssql-server  
+    9  sudo /opt/mssql/bin/mssql-conf setup  
+    10 systemctl status mssql-server --no-pager  
+    11 curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc  
+    12 curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-server-2022.list  
+    13 sudo apt-get update  
+    14 sudo apt-get install mssql-tools18  
 ```
