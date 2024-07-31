@@ -20,12 +20,12 @@ pipeline {
     }
     stage ('Migrations-List') {
       steps {
-        sh 'dotnet ef migrations list'
+        sh 'dotnet migrations list'
       }
     }
     stage ('Migration') {
       steps {
-        sh 'dotnet ef database update --project "blog_website/blog_website.csproj"'
+        sh 'dotnet database update --project "blog_website/blog_website.csproj"'
       }
     }
     stage ('Restore') {
