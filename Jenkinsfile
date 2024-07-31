@@ -1,11 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage ('Initialize') {
-      steps {
-        echo 'GULSUM'
-      }
-    }
     stage ('Build') {
       steps {
         sh 'dotnet build'
@@ -14,14 +9,16 @@ pipeline {
     stage ('dotnet install ef') {
       steps {
         sh 'dotnet tool install --global dotnet-ef'
+      }
+    }
+   stage ('ADD EF TO PATH') {
+      steps {
         sh 'export PATH="$PATH:/var/lib/jenkins/.dotnet/tools"'
       }
     }
-    stage ('List') {
+    stage ('LIST OF TOOLS') {
       steps {
-        sh 'ls -la'
-        sh 'pwd'
-        sh 'ls blog_website -la'
+        sh 'dotnet tool list -g'
       }
     }
     stage ('Migration') {
