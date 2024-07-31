@@ -11,9 +11,9 @@ pipeline {
         sh 'dotnet build'
       }
     }
-    stage ('List dotnet tools') {
+    stage ('dotnet install ef') {
       steps {
-        sh 'dotnet tool list -g'
+        sh 'dotnet tool install --global dotnet-ef'
       }
     }
     stage ('List') {
