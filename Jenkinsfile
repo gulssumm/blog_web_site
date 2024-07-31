@@ -16,6 +16,11 @@ pipeline {
         sh 'dotnet migrate'
       }
     }
+    stage ('Restore') {
+      steps {
+        sh 'dotnet restore'
+      }
+    }
     stage ('Run') {
       steps {
         sh 'dotnet run'
