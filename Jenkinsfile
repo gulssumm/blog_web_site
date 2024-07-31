@@ -10,15 +10,17 @@ pipeline {
         sh 'dotnet build'
       }
     }
-    stage ('Run') {
-      steps {
-        sh 'dotnet run'
+    parallel {
+      stage ('Run') {
+        steps {
+          sh 'dotnet run'
+      }
+      }
+      stages ('Migration') {
+        steps {
+          sh 'dotnet migrate'
       }
     }
-    stage ('Migration') {
-      steps {
-        sh 'dotnet migrate'
-      }
     }
   }
 }
