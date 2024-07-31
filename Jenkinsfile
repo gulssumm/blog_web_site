@@ -18,6 +18,11 @@ pipeline {
     }
     stage ('Restore') {
       steps {
+        sh 'dotnet ef migrations list'
+      }
+    }
+    stage ('Restore') {
+      steps {
         sh 'dotnet restore'
       }
     }
