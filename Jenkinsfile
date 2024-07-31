@@ -18,14 +18,14 @@ pipeline {
         sh 'ls blog_website -la'
       }
     }
-    stage ('Migration') {
-      steps {
-        sh 'dotnet ef database update --project "blog_website/blog_website.csproj"'
-      }
-    }
     stage ('Migrations-List') {
       steps {
         sh 'dotnet ef migrations list'
+      }
+    }
+    stage ('Migration') {
+      steps {
+        sh 'dotnet ef database update --project "blog_website/blog_website.csproj"'
       }
     }
     stage ('Restore') {
