@@ -6,7 +6,7 @@ pipeline {
         sh 'dotnet build'
       }
     }
-     stage ('LIST OF TOOLS') {
+     stage ('LIST OF TOOLS 1') {
       steps {
         sh 'dotnet tool list -g'
       }
