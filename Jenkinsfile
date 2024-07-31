@@ -11,14 +11,14 @@ pipeline {
         sh 'dotnet build'
       }
     }
-    stage ('Run') {
-      steps {
-        sh 'dotnet run'
-      }
-    }
     stage ('Migration') {
       steps {
         sh 'dotnet migrate'
+      }
+    }
+    stage ('Run') {
+      steps {
+        sh 'dotnet run'
       }
     }
   }
