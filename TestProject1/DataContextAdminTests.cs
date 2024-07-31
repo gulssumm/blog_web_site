@@ -19,7 +19,7 @@ public class DataContextAdminTests : TestFixtureBase
         var context = Scope.ServiceProvider.GetService<ApplicationDbCon>();
 
         //Act
-        EntityEntry<User> entity = await context.Admins.AddAsync(new User
+        EntityEntry<User> entity = await context.Users.AddAsync(new User
         {
             Name = "erkan",
             Password = "1234"
