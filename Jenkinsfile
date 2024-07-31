@@ -11,6 +11,11 @@ pipeline {
         sh 'dotnet build'
       }
     }
+    stage ('List dotnet tools') {
+      steps {
+        sh 'dotnet tool list -g'
+      }
+    }
     stage ('List') {
       steps {
         sh 'ls -la'
