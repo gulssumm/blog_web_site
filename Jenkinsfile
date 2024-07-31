@@ -14,6 +14,7 @@ pipeline {
     stage ('List') {
       steps {
         sh 'ls -la'
+        sh 'ls blog_website -la'
       }
     }
     stage ('Migration') {
