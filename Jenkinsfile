@@ -23,7 +23,7 @@ pipeline {
         sh 'dotnet ef database update --project "blog_website/blog_website.csproj"'
       }
     }
-    stage ('Restore') {
+    stage ('List') {
       steps {
         sh 'dotnet ef migrations list'
       }
