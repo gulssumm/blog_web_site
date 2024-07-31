@@ -11,6 +11,11 @@ pipeline {
         sh 'dotnet build'
       }
     }
+    stage ('Test') {
+      steps {
+        sh 'dotnet test'
+      }
+    }
     stage ('List') {
       steps {
         sh 'ls -la'
@@ -20,12 +25,12 @@ pipeline {
     }
     stage ('Migrations-List') {
       steps {
-        sh 'dotnet migrations list'
+        sh 'dotnet ef migrations list'
       }
     }
     stage ('Migration') {
       steps {
-        sh 'dotnet database update --project "blog_website/blog_website.csproj"'
+        sh 'dotnet ef database update --project "blog_website/blog_website.csproj"'
       }
     }
     stage ('Restore') {
