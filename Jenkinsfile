@@ -11,11 +11,6 @@ pipeline {
         sh 'dotnet tool list -g'
       }
     }
-    stage ('dotnet install ef') {
-      steps {
-        sh 'dotnet tool install --global dotnet-ef'
-      }
-    }
    stage ('ADD EF TO PATH') {
       steps {
         sh 'export PATH="$PATH:/var/lib/jenkins/.dotnet/tools"'
