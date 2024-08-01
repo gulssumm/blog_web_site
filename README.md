@@ -1,11 +1,5 @@
 # BLOG WEBSITE
 An ASP.NET Core MVC Entity Framework web site project.
-## Needs(Nuget Packages in Microsoft Visual Studio)
-- Microsoft.AspNetCore.Mvc.Testing
-- Microsoft.EntityFrameworkCore
-- Microsoft.EntityFrameworkCore.Design
-- Microsoft.EntityFrameworkCore.SqlServer
-- Microsoft.EntityFrameworkCore.Tools
 
 ## Overview  
 ![Ekran görüntüsü 2024-08-01 100737](https://github.com/user-attachments/assets/0763d97f-3f2d-43f4-b74c-bec05a6ca9d9)
