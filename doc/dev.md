@@ -48,34 +48,55 @@ builder.Services.AddMigration<ApplicationDbCon>();
 After all, you can just press the https button on Visual Studio or you can write 'dotnet run' on cmd to execute the project
 
 ### If you want to run the project on Jenkins
+- You need to install Jenkins on your machine
+> You can get help with this link: https://www.jenkins.io/doc/book/installing/windows/
 - You must login Jenkins and create a Github app
 - Generate private key and convert it
-- You can use this command to convert: 1-cd~/Downloads
-- 2-openssl pkcs8 -topk8 -inform PEM -outform PEM -in jenkins_name.year-mont-day.private-key.pem -out converted-github-app.pem -nocrypt
-- 3-ll converted github-app.pem
+- You can use this command to convert:
+```
+   cd~/Downloads
+   openssl pkcs8 -topk8 -inform PEM -outform PEM -in jenkins_name.year-mont-day.private-key.pem -out converted-github-app.pem -nocrypt
+   ll converted github-app.pem
+```
 - Then install the Github app
 - Go to credentials and select your project's global option
 - Create a credential and use the key that come from your Github app
 - Go to dashboard and add an item
 > You can get help from this video: https://www.youtube.com/watch?v=LbXKUKQ24T8
-- When the scanning finished successfull you can go to localhost and open the project
+- When the scanning finished successfully you can go to localhost and open the project
 
 ## UBUNTU 22.04
 > I run on VirtualBox and write according to this
 ### If you want to run the project with your local mssql server database you must make install mssql on your machine
 ```
-    1  sudo apt-get update  
-    2  sudo apt-get upgrade  
-    3  sudo apt install curl  
-    4  sudo apt-get update  
-    5  curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg  
-    6  curl -fsSL https://packages.microsoft.com/config/ubuntu/22.04/mssql-server-2022.list | sudo tee /etc/apt/sources.list.d/mssql-server-2022.list  
-    7  sudo apt-get update  
-    8  sudo apt-get install -y mssql-server  
-    9  sudo /opt/mssql/bin/mssql-conf setup  
-    10 systemctl status mssql-server --no-pager  
-    11 curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc  
-    12 curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-server-2022.list  
-    13 sudo apt-get update  
-    14 sudo apt-get install mssql-tools18  
+    sudo apt-get update  
+    sudo apt-get upgrade  
+    sudo apt install curl  
+    sudo apt-get update  
+    curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg  
+    curl -fsSL https://packages.microsoft.com/config/ubuntu/22.04/mssql-server-2022.list | sudo tee /etc/apt/sources.list.d/mssql-server-2022.list  
+    sudo apt-get update  
+    sudo apt-get install -y mssql-server  
+    sudo /opt/mssql/bin/mssql-conf setup  
+    systemctl status mssql-server --no-pager  
+    curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc  
+    curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-server-2022.list  
+    sudo apt-get update  
+    sudo apt-get install mssql-tools18  
 ```
+> You can get help with this link: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver16&tabs=ubuntu-install
+> Additionally, you must install dotnet on your machine to execute the project
+```
+    sudo apt-get update && \
+    sudo apt-get install -y dotnet-sdk-8.0
+    sudo apt-get update && \
+    sudo apt-get install -y aspnetcore-runtime-8.0
+```
+> If you haven't executed the project, you may add .bashrc to this paths:  
+> export PATH="$PATH:/opt/mssql-tools18/bin"  
+> export PATH="$PATH:/home/your_name/.dotnet/tools"  
+> You can use this commad to enter .bashrc: sudo nano ~/.bashrc
+### If you want to run the project on Jenkins
+- You need to install Jenkins on your machine
+> You can get help with this link: https://www.jenkins.io/doc/book/installing/linux/
+- You can do the same things that I mentioned earlier
