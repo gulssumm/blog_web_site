@@ -45,7 +45,6 @@ builder.Services.AddMigration<ApplicationDbCon>();
 ```
 > If you want to add columns or change something you should use Nuget Package Manager Console  
 > example: add-migrations your_migration_name
-After all, you can just press the https button on Visual Studio or you can write 'dotnet run' on cmd to execute the project
 
 ### If you want to run the project on Jenkins
 - You need to install Jenkins on your machine
@@ -99,4 +98,6 @@ After all, you can just press the https button on Visual Studio or you can write
 ### If you want to run the project on Jenkins
 - You need to install Jenkins on your machine
 > You can get help with this link: https://www.jenkins.io/doc/book/installing/linux/
-- You can do the same things that I mentioned earlier
+- You can do the same things that I mentioned earlier  
+
+After all, you can just press the https button on Visual Studio or you can write 'dotnet run' on cmd to execute the project
