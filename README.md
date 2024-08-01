@@ -7,9 +7,15 @@ An ASP.NET Core MVC Entity Framework web site project.
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
 
-## Open the project
-![Ekran görüntüsü 2024-07-19 164820](https://github.com/user-attachments/assets/ff91c7d9-9c01-4542-8dec-04fb6a4535c1)
-Choose the project.
+## Overview  
+![Ekran görüntüsü 2024-08-01 100737](https://github.com/user-attachments/assets/0763d97f-3f2d-43f4-b74c-bec05a6ca9d9)
+### When delete button is clicked 
+![Ekran görüntüsü 2024-08-01 100956](https://github.com/user-attachments/assets/6250767f-1b5c-4c76-b70f-f0e45bd0b2d5)
+### You can load pictures !!
+![Ekran görüntüsü 2024-08-01 101150](https://github.com/user-attachments/assets/22be2c6b-6d7b-44bf-a349-4ed5410165f9)
+### You can read more ...
+### Maybe you see more pictures on the blog
+![Ekran görüntüsü 2024-08-01 101320](https://github.com/user-attachments/assets/bdc664ed-0c0c-4c8d-bdfc-7cb8750549fd)
 
 
 ## Contact
